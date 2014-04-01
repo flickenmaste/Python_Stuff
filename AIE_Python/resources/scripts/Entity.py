@@ -1,5 +1,6 @@
 import AIE
 import game
+import Astar
 
 #Tank Entity
 #   A simple entity that can be placed on the screen with a right click, you should modify this so that the tank can be told to 
@@ -15,6 +16,7 @@ class TankEntity:
 		self.origin = (0.5, 0.5)
 		self.NodeList = []
 		self.NodePos = []
+		self.NodeIt = 0
 		self.spriteID = AIE.CreateSprite( self.spriteName, self.size[0], self.size[1], self.origin[0], self.origin[1], 71.0/459.0, 1.0 - 72.0/158.0, 128/459.0, 1.0 , 0xff, 0xff, 0xff, 0xff )
 		print "spriteID", self.spriteID
 		#Move Tile to appropriate location
@@ -25,11 +27,15 @@ class TankEntity:
 		mouseX, mouseY = AIE.GetMouseLocation()
 		if( AIE.GetMouseButton(1)  ):
 			self.Position = self.Seek(mouseX, mouseY)
-		if( AIE.GetMouseButton(2) ):
+		if( AIE.GetMouseButton(2) and (self.buttonPressed is False) ):
+			self.buttonPressed = True
 			self.BuildNode(mouseX, mouseY)
+			if(self.NodeList[self.NodeIt] == True):
+				self.VisitNode(self.NodePos[self.NodeIt])
+				self.NodeIt += 1
+		self.buttonPressed = not AIE.GetMouseButtonRelease(2)	
 		AIE.MoveSprite( self.spriteID, self.Position[0], self.Position[1] )
 		self.turret.update(fDeltaTime)
-		self.VisitNode()
 	
 	def draw(self):
 		
@@ -78,11 +84,13 @@ class TankEntity:
 		print self.NodeList
 		
 	# Visit basic node system
-	def VisitNode(self):
-		for x in self.NodeList:
-			if (self.NodeList[x] == True):
-				self.Position = self.SeekNode(self.NodePos[x])
+	def VisitNode(self, v2Pos):
+		self.Position = self.SeekNode(v2Pos)
 		return None
+		
+	# Avoid walls
+	# def AvoidWall(self):
+		
 	
 #Turret
 #    This is an Entity Object that has an owner, it is up to you to implement inheritance (BaseEntity->Turret) 
