@@ -15,6 +15,7 @@ PyMethodDef AIE_Functions[] =
 	{"GetMouseLocation",		AIE_GetMouseLocation,			METH_VARARGS,		"Where is the Mouse?"									},
 	{"GetMouseButton",			AIE_GetMouseButtonDown,			METH_VARARGS,		"Mouse Button Pressed?"									},
 	{"GetMouseButtonRelease",	AIE_GetMouseButtonReleased,		METH_VARARGS,		"Mouse Button Let Go?"									},
+	{"IsKeyDown",				AIE_IsKeyDown,					METH_VARARGS,		"Key Pressed?"											},
 	{NULL, NULL, 0, NULL}
 };
 

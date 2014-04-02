@@ -1,6 +1,7 @@
 import AIE
 import game
 import Astar
+from Collision import CCollision
 
 #Tank Entity
 #   A simple entity that can be placed on the screen with a right click, you should modify this so that the tank can be told to 
@@ -17,6 +18,7 @@ class TankEntity:
 		self.NodeList = []
 		self.NodePos = []
 		self.NodeIt = 0
+		self.Collision = CCollision(self, self.size[0])
 		self.spriteID = AIE.CreateSprite( self.spriteName, self.size[0], self.size[1], self.origin[0], self.origin[1], 71.0/459.0, 1.0 - 72.0/158.0, 128/459.0, 1.0 , 0xff, 0xff, 0xff, 0xff )
 		print "spriteID", self.spriteID
 		#Move Tile to appropriate location
@@ -36,6 +38,7 @@ class TankEntity:
 		self.buttonPressed = not AIE.GetMouseButtonRelease(2)	
 		AIE.MoveSprite( self.spriteID, self.Position[0], self.Position[1] )
 		self.turret.update(fDeltaTime)
+		self.Collision.update(self)
 	
 	def draw(self):
 		
