@@ -79,6 +79,7 @@ class Tile:
 		self.y = 0
 		self.NodeVal = 0
 		self.IsPassable = True
+
 	
 	def getImageName(self):
 		return self.imageName
