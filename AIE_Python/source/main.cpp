@@ -70,6 +70,8 @@ int main(int argc, char *argv[])
 		delete[] g_pWindowTitle;
 	}
 
+	std::cin.get();
+
     return 0;
 }
 

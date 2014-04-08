@@ -1,6 +1,6 @@
 import AIE
 import game
-import Astar
+import astar
 from Collision import CCollision
 
 #Tank Entity

@@ -1,6 +1,7 @@
 import AIE
 import game
 import math
+from grid import GridMap 
 
 #This is just a simple Level Grid that sets up a grid based level that fills the entire screen
 #this level is static in that is is the size of the viewport and no larger should you wish to create a 
@@ -16,6 +17,7 @@ class LevelGrid:
 		self.levelSize = self.levelWidth * (self.levelHeight+1)
 		print "LevelSize :", self.levelWidth, " ", self.levelHeight
 		self.levelTiles = [None] * int(self.levelSize)
+		self.grid = GridMap(20, 12)
 		NodeEek = 1
 		
 		for i in range(int(self.levelSize)):
