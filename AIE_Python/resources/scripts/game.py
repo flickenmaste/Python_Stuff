@@ -7,7 +7,6 @@
 import AIE
 import Level_Grid
 import Entity
-import Astar
 
 #Some global variables that are going to be used in this classless basefile, please note there are OO ways to pass this
 #information around, which would be overall more desirable

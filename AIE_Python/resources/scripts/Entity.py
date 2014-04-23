@@ -1,7 +1,8 @@
 import AIE
 import game
-import astar
+from astar import Astar
 from Collision import CCollision
+from grid import GridMap 
 
 #Tank Entity
 #   A simple entity that can be placed on the screen with a right click, you should modify this so that the tank can be told to 
@@ -22,6 +23,8 @@ class TankEntity:
 		self.spriteID = AIE.CreateSprite( self.spriteName, self.size[0], self.size[1], self.origin[0], self.origin[1], 71.0/459.0, 1.0 - 72.0/158.0, 128/459.0, 1.0 , 0xff, 0xff, 0xff, 0xff )
 		print "spriteID", self.spriteID
 		#Move Tile to appropriate location
+		self.grid = GridMap(20,12)
+		self.path = Astar(self.grid.successors, self.grid.move_cost, self.grid.move_cost)
 		
 		self.turret = Turret(self)
 		
